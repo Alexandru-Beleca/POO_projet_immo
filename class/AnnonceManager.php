@@ -31,41 +31,48 @@
                 ($annonce["id"],
                 $annonce["title"],
                 $annonce["surface"],
-                $annonce["parking"],
                 $annonce["adresse"],
-                $annonce["owner"],
-                $annonce["tenant"],
                 $annonce["description"],
                 $annonce["date"],
-                $annonce["update"],
-                $annonce["location"],
                 $annonce["photo"],
                 $annonce["prix"]);
                 $this->ajoutAnnonce($l);
             }
         }
 
-        //rajouter une image je renseigne en bas $file pour dire que c'est une image
-        //et je rajoute le dossier ou je dois le placer avec $repertoire.
-        public function ajoutPhoto(){
-            $file = $_FILES['photo'];
-            $repertoire = "../public/img";
-            ajoutImage($file,$repertoire);
-        }
+        // //rajouter une image je renseigne en bas $file pour dire que c'est une image
+        // //et je rajoute le dossier ou je dois le placer avec $repertoire.
+        // public function ajoutPhoto($file, $dir){
+        //     $file = $_FILES['photo'];
+        //     $repertoire = "../public/img";
+        //     ajoutImage($file,$repertoire);
+        // }
+
+        // private function ajoutPhoto($file, $dir){
+        //     //je verifie si j'ai renseigner une image dans le formulaire
+        //     if(!isset($file['name']) || empty($file['name']))
+        //     thow new Exception("Vous devez indiquer une image");
+
+        //     if(!file_exists($dir)) mkdir($dir, 0777);
+
+        //     $extension = strolower(pathinfo($file['name'],PATHINFO_EXTENSION));
+        //     $random = rand(0,99999);
+        //     $target_file = $dir.$random."_".$file["name"];
+        // }
         
 
-        public function ajoutAnnonceBdd($title,$surface,$description,$prix,$photo){
-            print_r('coucou');
+        public function ajoutAnnonceBdd($title,$surface,$description,$price,$photo){
+            
             $req = "
-            INSERT INTO property (title, surface, photo, description, prix)
-            values (:title, :surface, :photo, :description, :prix)";
+            INSERT INTO property (title, surface, photo, description, price)
+            values (:title, :surface, :photo, :description, :price)";
             $stmt = $this->getBdd()->prepare($req);
             $stmt->bindValue(":title",$title,PDO::PARAM_STR);
             $stmt->bindValue(":surface",$surface,PDO::PARAM_STR);
             $stmt->bindValue(":description",$description,PDO::PARAM_STR);
-            $stmt->bindValue(":prix",$prix,PDO::PARAM_INT);
+            $stmt->bindValue(":price",$price,PDO::PARAM_INT);
             $stmt->bindValue(":photo",$photo,PDO::PARAM_STR);
-            $resultat = $stmt->execute();
+            $stmt->execute();
             $stmt->closeCursor();
         }
 

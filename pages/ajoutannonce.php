@@ -1,9 +1,20 @@
 <?php
-
+ob_start();
 require_once "../class/AnnonceManager.php";
 
 define("NOMBREDECHAMBRE",10);
 
+$var=new AnnonceManager();
+
+
+$title=$_POST['title'];
+$adresse=$_POST['adress'];
+$surface=$_POST['surface'];
+$description=$_POST['description'];
+$price=$_POST['price'];
+$photo=$_POST['photo'];
+$chambre=$_POST['chambre'];
+$var->ajoutAnnonceBdd($title,$price,$vente,$location,$appartement,$maison,$autre,$adresse,$surface,$description,$photo,$chambre)
 ?>
 
 <form action="../class/AnnonceManager.php" method="POST" enctype="multipart/form-data">
@@ -43,8 +54,13 @@ define("NOMBREDECHAMBRE",10);
     </div>
 
     <div class="form-group">
-        <label for="adresse">Adresse</label>
-        <input type="text" class="form-control" name="adresse" placeholder="Adresse">
+        <label for="adress">Adresse</label>
+        <input type="text" class="form-control" name="adress" placeholder="Adress">
+    </div>
+
+    <div class="form-group">
+        <label for="price">Prix</label>
+        <input type="number" class="form-control" name="price" placeholder="price">
     </div>
 
     <div class="form-group">
