@@ -6,7 +6,7 @@ define("NOMBREDECHAMBRE",10);
 
 $var=new AnnonceManager();
 
-
+if (isset($_POST['title'])){
 $title=$_POST['title'];
 $adresse=$_POST['adress'];
 $surface=$_POST['surface'];
@@ -14,10 +14,12 @@ $description=$_POST['description'];
 $price=$_POST['price'];
 $photo=$_POST['photo'];
 $chambre=$_POST['chambre'];
-$var->ajoutAnnonceBdd($title,$price,$vente,$location,$appartement,$maison,$autre,$adresse,$surface,$description,$photo,$chambre)
+$date = date("y-m-d");
+$var->ajoutAnnonceBdd($title,$surface,$description,$price,$photo,$adresse,$chambre,$date);
+}
 ?>
 
-<form action="../class/AnnonceManager.php" method="POST" enctype="multipart/form-data">
+<form action="" method="POST">
 
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox">
@@ -88,7 +90,7 @@ $var->ajoutAnnonceBdd($title,$price,$vente,$location,$appartement,$maison,$autre
     
 
     <div class="form-group">
-        <button name="ajoutAnnonceBdd" type="submit" action="ajoutannonce.php" class="btn btn-primary mb-2">Submit</button>
+        <button name="ajoutAnnonceBdd" type="submit"  class="btn btn-primary mb-2">Submit</button>
     </div>
 
             

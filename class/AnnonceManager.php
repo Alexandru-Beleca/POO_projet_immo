@@ -35,7 +35,7 @@
                 $annonce["description"],
                 $annonce["date"],
                 $annonce["photo"],
-                $annonce["prix"]);
+                $annonce["price"]);
                 $this->ajoutAnnonce($l);
             }
         }
@@ -61,21 +61,24 @@
         // }
         
 
-        public function ajoutAnnonceBdd($title,$surface,$description,$price,$photo){
+        public function ajoutAnnonceBdd($title,$surface,$description,$price,$photo,$adresse,$chambre,$date){
             
             $req = "
-            INSERT INTO property (title, surface, photo, description, price)
-            values (:title, :surface, :photo, :description, :price)";
+            INSERT INTO property (title, surface, photo, description, price, adresse, chambre, date)
+            values (:title, :surface, :photo, :description, :price, :adresse, :chambre, :date)";
             $stmt = $this->getBdd()->prepare($req);
             $stmt->bindValue(":title",$title,PDO::PARAM_STR);
             $stmt->bindValue(":surface",$surface,PDO::PARAM_STR);
+            $stmt->bindValue(":photo",$photo,PDO::PARAM_STR);
             $stmt->bindValue(":description",$description,PDO::PARAM_STR);
             $stmt->bindValue(":price",$price,PDO::PARAM_INT);
-            $stmt->bindValue(":photo",$photo,PDO::PARAM_STR);
+            $stmt->bindValue(":adresse",$adresse,PDO::PARAM_STR);
+            $stmt->bindValue(":chambre",$chambre,PDO::PARAM_INT);
+            $stmt->bindValue(":date",$date,PDO::PARAM_STR);
             $stmt->execute();
             $stmt->closeCursor();
+            header("Location: ../pages/annonces.php");
         }
-
 }
 
 ?>

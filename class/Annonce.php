@@ -5,7 +5,7 @@ require_once "Database.php";
     class Annonce extends Database
 {
     private int $id;
-    private int $price;
+    private string $price;
     private string $surface;
     private string $adress;
     private string $photo;
