@@ -19,7 +19,7 @@ $var->ajoutAnnonceBdd($title,$surface,$description,$price,$photo,$adresse,$chamb
 }
 ?>
 
-<form action="" method="GET">
+<form action="" method="POST">
 
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox">

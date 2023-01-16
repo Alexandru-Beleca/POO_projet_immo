@@ -80,17 +80,17 @@
             header("Location: ../pages/annonces.php");
         }
 
-        public function suppAnnonceBdd($id){
-            $req - 'delete from annonces where id = :idAnnonces';
-            $stmt = $this->getBdd()->preapre($req);
-            $stmt->bindValue(":idAnnonces",$id,PDO::PARAM_INT);
-            $resultat = $stmt->execute();
-            $stmt->closeCursor();
-            if($resultat >0){
-                $this->suppAnnonceTab($id);
-                header("Location: ../pages/annonces.php");
-            }
-        }
+        // public function suppAnnonceBdd($id){
+        //     $req - 'delete from annonces where id = :idAnnonces';
+        //     $stmt = $this->getBdd()->preapre($req);
+        //     $stmt->bindValue(":idAnnonces",$id,PDO::PARAM_INT);
+        //     $resultat = $stmt->execute();
+        //     $stmt->closeCursor();
+        //     if($resultat >0){
+        //         $this->suppAnnonceTab($id);
+        //         header("Location: ../pages/annonces.php");
+        //     }
+        // }
 
             private function suppAnnonceTab($id){
                 for($i = 0 ; $i < count($this->annonces); $i++){
