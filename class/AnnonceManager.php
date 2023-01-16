@@ -62,22 +62,25 @@
 
 
         public function modifieAnnonceBdd($title,$surface,$description,$price,$photo,$adresse,$chambre,$date){
-            
-            $req = "
-            UPDATE INTO property (title, surface, photo, description, price, adresse, chambre, date)
-            values (:title, :surface, :photo, :description, :price, :adresse, :chambre, :date)";
-            $stmt = $this->getBdd()->prepare($req);
-            $stmt->bindValue(":title",$title,PDO::PARAM_STR);
-            $stmt->bindValue(":surface",$surface,PDO::PARAM_STR);
-            $stmt->bindValue(":photo",$photo,PDO::PARAM_STR);
-            $stmt->bindValue(":description",$description,PDO::PARAM_STR);
-            $stmt->bindValue(":price",$price,PDO::PARAM_INT);
-            $stmt->bindValue(":adresse",$adresse,PDO::PARAM_STR);
-            $stmt->bindValue(":chambre",$chambre,PDO::PARAM_INT);
-            $stmt->bindValue(":date",$date,PDO::PARAM_STR);
-            $stmt->execute();
-            $stmt->closeCursor();
-            header("Location: ../pages/annonces.php");
+    
+        //j'utilise la fonction UPDATE de mysql avec le nom de ma table et les différente caractéristique.
+        $stmt = "UPDATE property SET title= :title, surface= :surface, photo= :photo, description= :description, price= :price, adresse= :adresse, chambre= :chambre, date= :date WHERE id= :id";
+        //je place un bindparam devant chaque requette ainsi 
+        //qu'un systeme de filtre pour de la sécurité supplémentaire à l'injection de données.
+        //on "accroche" les paramètres (id)
+        $stmt = $this->getBdd()->prepare($stmt);
+        $stmt->bindValue(":title",$title,PDO::PARAM_STR);
+        $stmt->bindValue(":surface",$surface,PDO::PARAM_STR);
+        $stmt->bindValue(":photo",$photo,PDO::PARAM_STR);
+        $stmt->bindValue(":description",$description,PDO::PARAM_STR);
+        $stmt->bindValue(":price",$price,PDO::PARAM_INT);
+        $stmt->bindValue(":adresse",$adresse,PDO::PARAM_STR);
+        $stmt->bindValue(":chambre",$chambre,PDO::PARAM_INT);
+        $stmt->bindValue(":date",$date,PDO::PARAM_STR);
+        //on exécute la requete
+        $stmt->execute();
+        $stmt->closeCursor();
+        header("Location: ../pages/annonces.php");
         }
 
             public function suppAnnonceBdd($id){
