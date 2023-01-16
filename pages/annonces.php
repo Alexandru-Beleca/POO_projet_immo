@@ -13,6 +13,17 @@ $annonceManager->chargementAnnonces();
 
 ob_start();
 
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $var = new AnnonceManager();
+    $var->suppAnnonceBdd($id);
+    if ($result) {
+        echo "Object successfully deleted.";
+    } else {
+        echo "Error deleting object.";
+    }
+}
+
 ?>
 
 
@@ -43,7 +54,10 @@ ob_start();
         <td class="align-middle"><?= $annonces[$i]->getPrice(); ?></td>
         <td class="align-middle"><?= $annonces[$i]->getDescription(); ?></td>
         <td class="align-middle"><a href="../pages/modifieannonce.php" class="btn btn-warning">Modifier</a><br><br>
-        <a href="../class/AnnonceManager.php" class="btn btn-danger">Supprimer</a></td>
+        <form action="../pages/annonces.php" method="get">
+            <input type="hidden" name="delete" value="<?= $annonces[$i]->getId(); ?>">
+             <input type="submit" value="Supprimer">
+        </form>
     </tr>
 
     <!-- ici je stop la boucle for -->
