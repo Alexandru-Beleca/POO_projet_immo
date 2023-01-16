@@ -42,7 +42,7 @@ ob_start();
         <td class="align-middle"><?= $annonces[$i]->getSurface(); ?></td>
         <td class="align-middle"><?= $annonces[$i]->getPrice(); ?></td>
         <td class="align-middle"><?= $annonces[$i]->getDescription(); ?></td>
-        <td class="align-middle"><a href="" class="btn btn-warning">Modifier</a><br><br>
+        <td class="align-middle"><a href="../pages/modifieannonce.php" class="btn btn-warning">Modifier</a><br><br>
         <a href="" class="btn btn-danger">Supprimer</a></td>
     </tr>
 

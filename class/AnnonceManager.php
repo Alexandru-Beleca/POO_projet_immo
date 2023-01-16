@@ -40,6 +40,80 @@
             }
         }
 
+ 
+        public function ajoutAnnonceBdd($title,$surface,$description,$price,$photo,$adresse,$chambre,$date){
+            
+            $req = "
+            INSERT INTO property (title, surface, photo, description, price, adresse, chambre, date)
+            values (:title, :surface, :photo, :description, :price, :adresse, :chambre, :date)";
+            $stmt = $this->getBdd()->prepare($req);
+            $stmt->bindValue(":title",$title,PDO::PARAM_STR);
+            $stmt->bindValue(":surface",$surface,PDO::PARAM_STR);
+            $stmt->bindValue(":photo",$photo,PDO::PARAM_STR);
+            $stmt->bindValue(":description",$description,PDO::PARAM_STR);
+            $stmt->bindValue(":price",$price,PDO::PARAM_INT);
+            $stmt->bindValue(":adresse",$adresse,PDO::PARAM_STR);
+            $stmt->bindValue(":chambre",$chambre,PDO::PARAM_INT);
+            $stmt->bindValue(":date",$date,PDO::PARAM_STR);
+            $stmt->execute();
+            $stmt->closeCursor();
+            header("Location: ../pages/annonces.php");
+        }
+
+
+        public function modifieAnnonceBdd($title,$surface,$description,$price,$photo,$adresse,$chambre,$date){
+            
+            $req = "
+            UPDATE INTO property (title, surface, photo, description, price, adresse, chambre, date)
+            values (:title, :surface, :photo, :description, :price, :adresse, :chambre, :date)";
+            $stmt = $this->getBdd()->prepare($req);
+            $stmt->bindValue(":title",$title,PDO::PARAM_STR);
+            $stmt->bindValue(":surface",$surface,PDO::PARAM_STR);
+            $stmt->bindValue(":photo",$photo,PDO::PARAM_STR);
+            $stmt->bindValue(":description",$description,PDO::PARAM_STR);
+            $stmt->bindValue(":price",$price,PDO::PARAM_INT);
+            $stmt->bindValue(":adresse",$adresse,PDO::PARAM_STR);
+            $stmt->bindValue(":chambre",$chambre,PDO::PARAM_INT);
+            $stmt->bindValue(":date",$date,PDO::PARAM_STR);
+            $stmt->execute();
+            $stmt->closeCursor();
+            header("Location: ../pages/annonces.php");
+        }
+
+        public function suppAnnonceBdd($id){
+            $req - 'delete from annonces where id = :idAnnonces';
+            $stmt = $this->getBdd()->preapre($req);
+            $stmt->bindValue(":idAnnonces",$id,PDO::PARAM_INT);
+            $resultat = $stmt->execute();
+            $stmt->closeCursor();
+            if($resultat >0){
+                $this->suppAnnonceTab($id);
+            }
+        }
+
+            private function suppAnnonceTab($id){
+                for($i = 0 ; $i < count($this->annonces); $i++){
+                    if($this->annonces[$i]->getId() === $id){
+                        unset($this->annonces[$i]);
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
         // //rajouter une image je renseigne en bas $file pour dire que c'est une image
         // //et je rajoute le dossier ou je dois le placer avec $repertoire.
         // public function ajoutPhoto($file, $dir){
@@ -59,26 +133,7 @@
         //     $random = rand(0,99999);
         //     $target_file = $dir.$random."_".$file["name"];
         // }
-        
 
-        public function ajoutAnnonceBdd($title,$surface,$description,$price,$photo,$adresse,$chambre,$date){
-            
-            $req = "
-            INSERT INTO property (title, surface, photo, description, price, adresse, chambre, date)
-            values (:title, :surface, :photo, :description, :price, :adresse, :chambre, :date)";
-            $stmt = $this->getBdd()->prepare($req);
-            $stmt->bindValue(":title",$title,PDO::PARAM_STR);
-            $stmt->bindValue(":surface",$surface,PDO::PARAM_STR);
-            $stmt->bindValue(":photo",$photo,PDO::PARAM_STR);
-            $stmt->bindValue(":description",$description,PDO::PARAM_STR);
-            $stmt->bindValue(":price",$price,PDO::PARAM_INT);
-            $stmt->bindValue(":adresse",$adresse,PDO::PARAM_STR);
-            $stmt->bindValue(":chambre",$chambre,PDO::PARAM_INT);
-            $stmt->bindValue(":date",$date,PDO::PARAM_STR);
-            $stmt->execute();
-            $stmt->closeCursor();
-            header("Location: ../pages/annonces.php");
-        }
 }
 
 ?>

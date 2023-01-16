@@ -15,11 +15,11 @@ $price=$_POST['price'];
 $photo=$_POST['photo'];
 $chambre=$_POST['chambre'];
 $date = date("y-m-d");
-$var->ajoutAnnonceBdd($title,$surface,$description,$price,$photo,$adresse,$chambre,$date);
+$var->modifieAnnonceBdd($title,$surface,$description,$price,$photo,$adresse,$chambre,$date);
 }
 ?>
 
-<form action="" method="GET">
+<form action="" method="POST">
 
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox">
@@ -52,7 +52,7 @@ $var->ajoutAnnonceBdd($title,$surface,$description,$price,$photo,$adresse,$chamb
 
     <div class="form-group">
         <label for="title">Titre de l'annonce</label>
-        <input type="text" class="form-control" name="title" <?= $annonces[$i]->getTitle(); ?> placeholder="Titre de l'annonce">
+        <input type="text" class="form-control" name="title" placeholder="Titre de l'annonce">
     </div>
 
     <div class="form-group">
