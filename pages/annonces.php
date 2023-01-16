@@ -43,7 +43,7 @@ ob_start();
         <td class="align-middle"><?= $annonces[$i]->getPrice(); ?></td>
         <td class="align-middle"><?= $annonces[$i]->getDescription(); ?></td>
         <td class="align-middle"><a href="../pages/modifieannonce.php" class="btn btn-warning">Modifier</a><br><br>
-        <a href="" class="btn btn-danger">Supprimer</a></td>
+        <a href="../class/AnnonceManager.php" class="btn btn-danger">Supprimer</a></td>
     </tr>
 
     <!-- ici je stop la boucle for -->

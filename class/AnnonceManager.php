@@ -88,6 +88,7 @@
             $stmt->closeCursor();
             if($resultat >0){
                 $this->suppAnnonceTab($id);
+                header("Location: ../pages/annonces.php");
             }
         }
 
@@ -134,7 +135,7 @@
         //     $target_file = $dir.$random."_".$file["name"];
         // }
 
-}
+
 
 ?>
 

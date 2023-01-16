@@ -52,7 +52,7 @@ $var->ajoutAnnonceBdd($title,$surface,$description,$price,$photo,$adresse,$chamb
 
     <div class="form-group">
         <label for="title">Titre de l'annonce</label>
-        <input type="text" class="form-control" name="title" <?= $annonces[$i]->getTitle(); ?> placeholder="Titre de l'annonce">
+        <input type="text" class="form-control" name="title" placeholder="Titre de l'annonce">
     </div>
 
     <div class="form-group">
